@@ -3,4 +3,4 @@ This workflow is designed to help streamline MDS MAS-Seq PacBio long read data a
 
 ![Workflow](masSEQ-nextflow/pipeline.pdf)
 
-[embed][http://example.com/file.pdf](https://github.com/pranavmuthu/masSeq-nextflow/blob/main/pipeline.pdf)[/embed]
+[embed][https://github.com/pranavmuthu/masSeq-nextflow/blob/main/pipeline.pdf][/embed]
