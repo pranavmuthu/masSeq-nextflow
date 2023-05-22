@@ -7,8 +7,6 @@ nextflow.enable.dsl=2
 
 // Import sub-workflows
 include { validate_manifest } from './modules/manifest'
-include { quality_wf } from './modules/quality'
-include { align_wf } from './modules/align'
 
 
 // Function which prints help message text
@@ -16,7 +14,7 @@ def helpMessage() {
     log.info"""
 Usage:
 
-nextflow run FredHutch/workflow-template-nextflow <ARGUMENTS>
+nextflow run pranavmuthu/masSeq-nextflow <ARGUMENTS>
 
 Required Arguments:
 
