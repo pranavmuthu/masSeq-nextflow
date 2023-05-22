@@ -19,21 +19,23 @@ nextflow run pranavmuthu/masSeq-nextflow <ARGUMENTS>
 Required Arguments:
 
   Input Data:
-  --fastq_folder        Folder containing paired-end FASTQ files ending with .fastq.gz,
-                        containing either "_R1" or "_R2" in the filename.
-  or
-  --manifest            Single file with the location of all input data. Must be formatted
-                        as a CSV with columns: sample,R1,R2
+  --data_dir            Directory containing folders with segmented.bam files {/fh/fast/furlan_s/SR/ngs/pacbio/230501_Sami}
 
   Reference Data:
-  --genome_fasta        Reference genome to use for alignment, in FASTA format
+  --ref_dir             Directory containing PacBio long read reference data {/fh/fast/furlan_s/grp/refs/long_read_refs/pacbio}
 
   Output Location:
-  --output_folder       Folder for output files
-
-Optional Arguments:
-  --min_qvalue          Minimum quality score used to trim data (default: ${params.min_qvalue})
-  --min_align_score     Minimum alignment score (default: ${params.min_align_score})
+  --out_dir             Directory to write output files into {/fh/scratch/delete90/furlan_s/targ_reseq/230501_Sami}
+  
+  Other Required Data:
+  --primers_5p          FastA primers file {$ref_dir/5p_10x_primers.fasta}
+  --cbc_include         {$ref_dir/737K-august-2016.txt}
+  --hg38                FastA genome to align to {/fh/fast/furlan_s/grp/refs/long_read_refs/Human_hg38_Gencode_v39/human_GRCh38_no_alt_analysis_set.fasta}
+  --annotation          GTF annotation file {/fh/fast/furlan_s/grp/refs/long_read_refs/Human_hg38_Gencode_v39/gencode.v39.annotation.sorted.gtf}
+  --pA                  PolyA sequences file {/fh/fast/furlan_s/grp/refs/long_read_refs/Human_hg38_Gencode_v39/polyA.list.txt}
+  --cage                Bed file for Cage Peaks {/fh/fast/furlan_s/grp/refs/long_read_refs/Human_hg38_Gencode_v39/refTSS_v3.3_human_coordinate.hg38.sorted.bed}
+  --threads             # of threads needed(10)
+  
     """.stripIndent()
 }
 
