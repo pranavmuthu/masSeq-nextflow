@@ -6,7 +6,7 @@ nextflow.enable.dsl=2
 // All of the default parameters are being set in `nextflow.config`
 
 // Import sub-workflows
-include { validate_manifest } from './modules/manifest'
+include { process } from './modules/[sub_workflow_name]'
 
 
 // Function which prints help message text
