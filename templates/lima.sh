@@ -2,27 +2,23 @@
 
 set -euo pipefail
 
-echo "Creating and moving to output folder"
-mkdir -p $out_dir
-cd $out_dir
+echo "Checking for segmented.bam in ${input_folder}"
+if [ -s "${input_folder}/segmented.bam" ]; then
 
-echo "Running Lima, Tag, Refine, Correct, Sort, BCstats, and dedupe for all input bams"
-for ibam in $data_dir/Sami*/segmented.bam; do
-    export bam=$ibam
-    in_dir=`dirname $bam`
-    prefix=$in_dir/`basename $bam | cut -d'.' -f1`
-    export prefix=${prefix/#"${data_dir}/"}
-    export out_subdir=`dirname $prefix`
-    mkdir -p $out_subdir
-    
-    sbatch -n 1 -c 30 -p campus-new -M gizmo --mem-per-cpu=21000MB --wrap='lima \
+    echo "Running lima on ${input_folder}/segmented.bam"
+
+    mkdir -p output
+
+    echo "Running Lima, Tag, Refine, Correct, Sort, BCstats, and dedupe for all input bams"
+    lima \
         --log-level INFO \
-        --log-file $out_subdir/lima.log \
+        --log-file ${input_folder}.lima.log \
         --isoseq \
-        -j $threads \
-        $bam \
-        $primers_5p \
-        $prefix.bam
-done
+        -j ${task.cpus} \
+        "${input_folder}/segmented.bam" \
+        "${params.primers_5p}" \
+        "output/${input_folder}.bam"
 
-echo "DONE"
+    echo "DONE"
+
+fi

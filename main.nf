@@ -5,9 +5,8 @@ nextflow.enable.dsl=2
 
 // All of the default parameters are being set in `nextflow.config`
 
-// Import sub-workflows
-include { process } from './modules/[sub_workflow_name]'
-include { lima } from './modules/lima'
+// Import the primary workflow for running masSeq
+include { masseq_wf } from './modules/masseq'
 
 
 // Function which prints help message text
@@ -51,13 +50,9 @@ workflow {
         helpMessage()
         // Exit out and do not run anything else
         exit 1
+    } else {
+        // Run the workflow if all parameters are given
+        masseq_wf()
     }
-
-    // Run the workflow if all parameters are given
-    else {
-    
-    }
-
-   
 
 }
