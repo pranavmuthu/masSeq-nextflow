@@ -7,6 +7,7 @@ nextflow.enable.dsl=2
 
 // Import sub-workflows
 include { process } from './modules/[sub_workflow_name]'
+include { lima } from './modules/lima'
 
 
 // Function which prints help message text
